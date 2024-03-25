@@ -54,6 +54,11 @@ export class AppComponent implements OnInit {
     alert('Alera de event binding')  
   }
 
+  eliminaPersona(persona: string){
+    let index = this.listaPersonas.findIndex(d => d === persona);
+    this.listaPersonas.splice(index, 1)
+  }
+
   agregarPersona() {
     this.listaPersonas.push(this.persona.nombre)
     this.persona.nombre = ''
