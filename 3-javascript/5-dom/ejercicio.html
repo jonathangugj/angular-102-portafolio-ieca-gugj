@@ -11,7 +11,7 @@
     </div>
     <div style="display: flex">
         <button id="btnActualizacion" onClick="modificarEncabezado()" style="margin-right: 10px">Establecer Encabezado</button>
-        <button id="btnUndo" disabled>Encabezado Anterior</button>
+        <button id="btnUndo" onclick="deshacer()" disabled>Encabezado Anterior</button>
     </div>
     <h1 id="encabezado">...</h1>
 
@@ -37,9 +37,27 @@
         const btnUndo = document.getElementById('btnUndo')
         const tituloEncabezado = document.getElementById('encabezado')
         const inputEncabezado = document.getElementById('inputEncabezado')
+        let tituloAnterior=''
+        let contador = 0
+        let estado = ''
 
         function modificarEncabezado() {
-            /* Tu código aquí */
+            const texto = inputEncabezado.value
+            console.log(texto)
+            if(!texto) {
+                alert('El valor no puede ser vacio')
+                return
+            }
+            tituloAnterior = tituloEncabezado.textContent
+            contador++
+            tituloEncabezado.textContent = texto
+            if (contador > 1)
+                btnUndo.disabled = false
+            console.log(tituloAnterior)
+        }
+
+        function deshacer() {
+            tituloEncabezado.textContent= tituloAnterior
         }
     </script>
 </body>
